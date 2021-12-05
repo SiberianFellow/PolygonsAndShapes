@@ -14,7 +14,7 @@ namespace Shapes
                 double k = basicBoxSize * 0.5; // коэффициент размеров для создаваемых рандомно фигур
                 Console.WriteLine("Будем складывать в такую коробку:");
                 Box boxToPutIn = new(basicBoxSize);
-                Console.WriteLine(boxToPutIn.ShowInfo());
+                Console.WriteLine(boxToPutIn.ShapesInside());
                 Random rnd = new Random();
                 bool enoughVolume = true;
                 while (enoughVolume)
@@ -25,11 +25,7 @@ namespace Shapes
                         case 0:
                             {
                                 Box randomBox = new(k * rnd.NextDouble());
-                                if (boxToPutIn.Add(randomBox))
-                                {
-                                    boxToPutIn.PutInside(randomBox);
-                                }
-                                else
+                                if (!boxToPutIn.Add(randomBox))
                                 {
                                     enoughVolume = false;
                                 }
@@ -38,12 +34,8 @@ namespace Shapes
                         case 1:
                             {
                                 Ball randomBall = new(k * rnd.NextDouble());
-                                if (boxToPutIn.Add(randomBall))
-                                {
-                                    boxToPutIn.PutInside(randomBall);
-                                }
-                                else
-                                {
+                                if (!boxToPutIn.Add(randomBall))
+                                { 
                                     enoughVolume = false;
                                 }
                                 break;
@@ -51,11 +43,7 @@ namespace Shapes
                         case 2:
                             {
                                 Pyramid randomPyramid = new(k * rnd.NextDouble(), k * rnd.NextDouble());
-                                if (boxToPutIn.Add(randomPyramid))
-                                {
-                                    boxToPutIn.PutInside(randomPyramid);
-                                }
-                                else
+                                if (!boxToPutIn.Add(randomPyramid))
                                 {
                                     enoughVolume = false;
                                 }
@@ -64,11 +52,7 @@ namespace Shapes
                         default:
                             {
                                 Cylinder randomCylinder = new(k * rnd.NextDouble(), k * rnd.NextDouble());
-                                if (boxToPutIn.Add(randomCylinder))
-                                {
-                                    boxToPutIn.PutInside(randomCylinder);
-                                }
-                                else
+                                if (!boxToPutIn.Add(randomCylinder))
                                 {
                                     enoughVolume = false;
                                 }
@@ -78,7 +62,7 @@ namespace Shapes
                 }
                 Console.WriteLine($"There is not enough space for the next shape, volume left: {boxToPutIn.volumeLeft}");
                 Console.WriteLine("There are next shapes inside: ");
-                Console.WriteLine(boxToPutIn.ShowShapesInside());
+                Console.WriteLine(boxToPutIn.ShapesInside());
                 Console.ReadLine();
             }
             catch (Exception ex)

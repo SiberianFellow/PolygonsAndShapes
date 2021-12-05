@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PolygonAndPoint
+namespace PerimeterOfPolygon
 {
     public class Polygon
     {
@@ -24,7 +24,7 @@ namespace PolygonAndPoint
         }
         public Polygon(Point A, Point B, Point C, Point D, Point E)
         {
-            points.Add(A); 
+            points.Add(A);
             points.Add(B);
             points.Add(C);
             points.Add(D);
@@ -46,15 +46,15 @@ namespace PolygonAndPoint
             }
             return perimeter;
         }
-        public string ShowPoints()
+        public string Points()
         {
             string result = "";
             foreach (Point point in points)
             {
-                result = result +  point.ShowInfo() + "\n";
+                result = result + point.Info() + "\n";
             }
             return result;
         }
-        
+
     }
 }

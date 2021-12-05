@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PolygonAndPoint
+namespace PerimeterOfPolygon
 {
     public class Point
     {
@@ -27,9 +27,9 @@ namespace PolygonAndPoint
         {
             return (Math.Sqrt(Math.Pow(x - other.x, 2) + Math.Pow(y - other.y, 2)));
         }
-        public string ShowInfo()
+        public string Info()
         {
-            return pointName + " X = " + x.ToString() + " Y = " + y.ToString();
+            return pointName + " X = " + x.ToString() + ", Y = " + y.ToString();
         }
     }
 }

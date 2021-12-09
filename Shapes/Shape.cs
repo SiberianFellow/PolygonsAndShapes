@@ -8,33 +8,33 @@ namespace Shapes
 {
     public abstract class Shape
     {
-        public abstract string shapeName { get; }
+        public abstract string ShapeName { get; }
         public abstract double Volume();
     }
     public class Box : Shape
     {
-        public double height { get; }
-        public override string shapeName { get; }
-        public double volumeLeft {get; internal set;}
-        List<Shape> shapesInside = new List<Shape>();
+        public double Height { get; }
+        public override string ShapeName { get; }
+        public double VolumeLeft {get; internal set;}
+        List<Shape> ListOfShapes = new List<Shape>();
         
         public Box(double height)
         {
-            this.height = height;
-            volumeLeft = Volume();
-            shapeName = "Box";
+            this.Height = height;
+            VolumeLeft = Volume();
+            ShapeName = "Box";
         }
         public override double Volume()
         {
-            return Math.Pow(height, 3);
+            return Math.Pow(Height, 3);
         }
         public bool Add(Shape shape)
         {   
             double volumeToAdd = shape.Volume();
-            if (volumeLeft >= volumeToAdd)
+            if (VolumeLeft >= volumeToAdd)
             {
-                volumeLeft -= volumeToAdd;
-                shapesInside.Add(shape);
+                VolumeLeft -= volumeToAdd;
+                ListOfShapes.Add(shape);
                 return true;
             }
             else
@@ -45,57 +45,57 @@ namespace Shapes
         public string ShapesInside()
         {
             string result = "";
-            foreach (Shape shape in shapesInside)
+            foreach (Shape shape in ListOfShapes)
             {
-                result = result + shape.shapeName + ", Volume = " + shape.Volume() + "\n";
+                result = result + shape.ShapeName + ", Volume = " + shape.Volume() + "\n";
             }
             return result;
         }
     }
     public class Cylinder : Shape
     {
-        public double radius { get; }
-        public double height { get; }
-        public override string shapeName { get; }
+        public double Radius { get; }
+        public double Height { get; }
+        public override string ShapeName { get; }
         public Cylinder(double height, double radius) : base()
         {
-            this.height = height;
-            this.radius = radius;
-            shapeName = "Cylinder";
+            this.Height = height;
+            this.Radius = radius;
+            ShapeName = "Cylinder";
         }
         public override double Volume()
         {
-            return Math.PI * Math.Pow(radius, 2) * height;
+            return Math.PI * Math.Pow(Radius, 2) * Height;
         }
     }
     public class Ball : Shape
     {
-        public double radius { get; }
-        public override string shapeName { get; }
+        public double Radius { get; }
+        public override string ShapeName { get; }
         public Ball(double radius) : base()
         {
-            this.radius = radius;
-            shapeName = "Ball";
+            this.Radius = radius;
+            ShapeName = "Ball";
         }
         public override double Volume()
         {
-            return 4.0 / 3.0 * Math.PI * Math.Pow(radius, 3);
+            return 4.0 / 3.0 * Math.PI * Math.Pow(Radius, 3);
         }
     }
     public class Pyramid : Shape
     {
-        public  double baseArea { get; }
-        public double height { get; }
-        public override string shapeName { get; }
+        public  double BaseArea { get; }
+        public double Height { get; }
+        public override string ShapeName { get; }
         public Pyramid(double height, double baseArea) : base()
         {
-            this.height = height;
-            this.baseArea = baseArea;
-            shapeName = "Pyramid";
+            this.Height = height;
+            this.BaseArea = baseArea;
+            ShapeName = "Pyramid";
         }
         public override double Volume()
         {
-            return  baseArea * height / 3.0;
+            return BaseArea * Height / 3.0;
         }
     }
 }
